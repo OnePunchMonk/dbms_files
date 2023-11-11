@@ -1,0 +1,75 @@
+Array
+(
+    [faculty_name] => qwerty
+    [contact_info] => 9812391
+    [department] => CSE
+    [office_location] => mumbai
+    [password] => abcd
+)
+
+Array
+(
+    [status] => success
+    [message] => Faculty added successfully!
+)
+
+Array
+(
+    [faculty_name] => avaya
+    [contact_info] => 96500
+    [department] => weather
+    [office_location] => delhi
+    [password] => abc
+)
+
+Array
+(
+    [status] => success
+    [message] => Faculty added successfully!
+)
+
+Array
+(
+    [faculty_name] => qwerty123
+    [contact_info] => 96500
+    [department] => weather
+    [office_location] => weather
+    [password] => abc
+)
+
+Array
+(
+    [status] => success
+    [message] => Faculty added successfully!
+)
+
+Array
+(
+    [faculty_name] => qwerty123
+    [contact_info] => 9812391
+    [department] => weather
+    [office_location] => abcde
+    [password] => abc
+)
+
+Array
+(
+    [status] => success
+    [message] => Faculty added successfully!
+)
+
+Array
+(
+    [faculty_name] => Avaya
+    [contact_info] => 9876543210
+    [department] => CSE
+    [office_location] => delhi
+    [password] => abc
+)
+
+Array
+(
+    [status] => success
+    [message] => Faculty added successfully!
+)
+

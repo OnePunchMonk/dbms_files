@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <title>Delete Student</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h2>Delete Student</h2>
+    <form id="removeStudentForm" action="http://localhost/dbms_proj_php/delete_student.php" method="POST">
+
+        <label for="student_id">Student ID:</label>
+        <input type="number" id="student_id" name="student_id" required>
+        <br>
+        <input type="submit" value="Delete Student">
+    </form>
+    <div id="resultMessage"></div>
+</body>
+<script>
+    $(document).ready(function () {
+        // Intercept the form submission
+        $("#removeStudentForm").submit(function (event) {
+            event.preventDefault(); // Prevent the default form submission
+
+            // Use AJAX to submit the form data
+            $.ajax({
+                type: "POST",
+                url: $(this).attr("action"),
+                data: $(this).serialize(), // Serialize the form data
+                success: function (response) {
+                    // Debugging statement - remove or comment out in production
+                    // console.log(response);
+
+                    // Display the result message just below the submit button
+                    $("#resultMessage").html(response.message).css('color', response.status === 'success' ? 'green' : 'red');
+                }
+            });
+        });
+    });
+</script>
+
+</html>

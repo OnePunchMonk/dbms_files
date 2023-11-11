@@ -1,0 +1,45 @@
+<!-- delete_faculty.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delete Faculty</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
+    <script>
+        $(document).ready(function () {
+            // Intercept the form submission
+            $("#deleteFaculty").submit(function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Use AJAX to submit the form data
+                $.ajax({
+                    type: "POST",
+                    url: $(this).attr("action"),
+                    data: $(this).serialize(), // Serialize the form data
+                    success: function (response) {
+                        // Display the result message just below the submit button
+                        $("#resultMessage").html(response).css('color', response.includes('successfully') ? 'green' : 'red');
+                    }
+                });
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <h2>Delete Faculty</h2>
+    <form id="deleteFaculty" action="http://localhost/dbms_proj_php/delete_faculty.php" method="POST">
+        <!-- Delete Faculty form fields -->
+        <label for="faculty_id">Faculty ID:</label>
+        <input type="number" id="faculty_id" name="faculty_id" required>
+        <br>
+        <input type="submit" value="Delete Faculty">
+    </form>
+    <div id="resultMessage"></div>
+</body>
+
+</html>

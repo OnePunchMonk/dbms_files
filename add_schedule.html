@@ -1,0 +1,78 @@
+<!-- add_schedule.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css" />
+    <title>Add Schedule</title>
+</head>
+
+<body>
+    <h2>Add Schedule</h2>
+    <div id="response-message"></div>
+    <form id="schedule-form" action="http://localhost/dbms_proj_php/add_schedule.php" method="POST">
+        <!-- Updated action attribute -->
+        <!-- Add Schedule form fields -->
+        <label for="course_id">Course ID:</label>
+        <input type="number" id="course_id" name="course_id" required>
+        <br>
+        <label for="faculty_id">Faculty ID:</label>
+        <input type="number" id="faculty_id" name="faculty_id" required>
+        <br>
+        <label for="room_id">Room ID:</label>
+        <input type="text" id="room_id" name="room_id" required>
+        <br>
+        <label for="time">Time:</label>
+        <input type="text" id="time" name="time" required>
+        <br>
+        <label for="days">Days:</label>
+        <input type="text" id="days" name="days" required>
+        <br>
+        <input type="submit" value="Add Schedule">
+    </form>
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#schedule-form").submit(function (event) {
+                event.preventDefault();
+                var formData = {
+                    'course_id': $('#course_id').val(),
+                    'faculty_id': $('#faculty_id').val(),
+                    'room_id': $('#room_id').val(),
+                    'time': $('#time').val(),
+                    'days': $('#days').val()
+                };
+
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://localhost/dbms_proj_php/add_schedule.php',
+                    data: formData,
+                    dataType: 'json',
+                    encode: true
+                })
+                    .done(function (data) {
+                        if (data.success) {
+                            $('#response-message').text("Schedule added successfully!").css('color', 'green');
+                            // Clear response message after a brief delay
+                            setTimeout(function () {
+                                $('#response-message').text('').css('color', ''); // Clear the message
+                            }, 3000); // Adjust the delay (in milliseconds) as needed
+                        } else {
+                            $('#response-message').text("Error: " + data.message).css('color', 'red');
+                        }
+                    })
+                    .fail(function (jqXHR, textStatus, errorThrown) {
+                        console.log("AJAX request failed:", textStatus, errorThrown);
+                        $('#response-message').text("AJAX request failed").css('color', 'red');
+                    });
+            });
+        });
+
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Faculty</title>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+</head>
+
+<body>
+    <h2>Add Faculty</h2>
+    <form id="addFacultyForm" action="http://localhost/dbms_proj_php/add_faculty.php" method="POST">
+        <!-- Add Faculty form fields -->
+        <label for="faculty_name">Faculty Name:</label>
+        <input type="text" id="faculty_name" name="faculty_name" required>
+        <br>
+        <label for="contact_info">Contact Information:</label>
+        <input type="text" id="contact_info" name="contact_info">
+        <br>
+        <label for="department">Department:</label>
+        <input type="text" id="department" name="department">
+        <br>
+        <label for="office_location">Office Location:</label>
+        <input type="text" id="office_location" name="office_location">
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required>
+        <br>
+        <input type="submit" value="Add Faculty">
+    </form>
+
+    <div id="resultMessage"></div>
+
+    <script>
+        $(document).ready(function () {
+            // Intercept the form submission
+            $("#addFacultyForm").submit(function (event) {
+                event.preventDefault(); // Prevent the default form submission
+
+                // Use AJAX to submit the form data
+                $.ajax({
+                    type: "POST",
+                    url: $(this).attr("action"),
+                    data: $(this).serialize(), // Serialize the form data
+                    success: function (response) {
+                        // Display the result message just below the submit button
+                        $("#resultMessage").html(response.message).css('color', response.status === 'success' ? 'green' : 'red');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

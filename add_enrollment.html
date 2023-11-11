@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Enrollment</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> <!-- Include jQuery -->
+</head>
+
+<body>
+    <h2>Add Enrollment</h2>
+    <form id="addEnrollmentForm" action="http://localhost/dbms_proj_php/add_enrollment.php" method="POST">
+        <!-- Add Enrollment form fields -->
+        <label for="student_id">Student ID:</label>
+        <input type="number" id="student_id" name="student_id" required>
+        <br>
+        <label for="course_id">Course ID:</label>
+        <input type="number" id="course_id" name="course_id" required>
+        <br>
+        <input type="button" value="Add Enrollment" onclick="addEnrollment()">
+    </form>
+
+    <div id="resultMessage"></div> <!-- This div will show the result message -->
+
+    <script>
+        function addEnrollment() {
+            // Get form data
+            var studentId = $("#student_id").val();
+            var courseId = $("#course_id").val();
+
+            // Prepare data for submission
+            var data = {
+                student_id: studentId,
+                course_id: courseId
+            };
+
+            // Use AJAX to submit the form data
+            $.ajax({
+                type: "POST",
+                url: "http://localhost/dbms_proj_php/add_enrollment.php",
+                data: data,
+                success: function (response) {
+                    // Display the result message
+                    $("#resultMessage").html(response.message);
+                },
+                error: function (xhr, status, error) {
+                    console.error("AJAX request failed:", status, error);
+                }
+            });
+        }
+    </script>
+</body>
+
+</html>

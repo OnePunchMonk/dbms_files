@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<link rel="stylesheet" href="style.css" />
+
+<head>
+    <title>User Login</title>
+
+</head>
+<!-- <link rel="stylesheet" href="style.css" /> -->
+
+<body>
+    <h2>User Login</h2>
+    <form action="http://localhost/dbms_proj_php/login.php" method="post">
+        <label for="user_id">Student ID:</label>
+        <input type="text" name="user_id" required><br><br>
+
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br><br>
+
+        <input type="submit" value="Login">
+    </form>
+
+    <p>New User? <a href="add_student.html">Register Here</a></p>
+</body>
+
+</html>
